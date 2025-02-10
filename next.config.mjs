@@ -2,33 +2,31 @@ import { readFile } from 'node:fs/promises';
 
 // Build information
 process.env.NEXT_PUBLIC_BUILD_HASH = 'big-agi-2-dev';
-process.env.NEXT_PUBLIC_BUILD_PKGVER = JSON.parse('' + await readFile(new URL('./package.json', import.meta.url))).version;
+process.env.NEXT_PUBLIC_BUILD_PKGVER = JSON.parse('' + (await readFile(new URL('./package.json', import.meta.url)))).version;
 process.env.NEXT_PUBLIC_BUILD_TIMESTAMP = new Date().toISOString();
 console.log(` 🧠 \x1b[1mbig-AGI\x1b[0m v${process.env.NEXT_PUBLIC_BUILD_PKGVER} (@${process.env.NEXT_PUBLIC_BUILD_HASH})`);
 
 // Non-default build types
-const buildType =
-  process.env.BIG_AGI_BUILD === 'standalone' ? 'standalone'
-    : process.env.BIG_AGI_BUILD === 'static' ? 'export'
-      : undefined;
+const buildType = process.env.BIG_AGI_BUILD === 'standalone' ? 'standalone' : process.env.BIG_AGI_BUILD === 'static' ? 'export' : undefined;
 
 buildType && console.log(` 🧠 big-AGI: building for ${buildType}...\n`);
 
 /** @type {import('next').NextConfig} */
 let nextConfig = {
   reactStrictMode: true,
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  distDir: 'dist',
 
   // [exports] https://nextjs.org/docs/advanced-features/static-html-export
-  ...buildType && {
+  ...(buildType && {
     output: buildType,
-    distDir: 'dist',
 
     // disable image optimization for exports
     images: { unoptimized: true },
 
     // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
     // trailingSlash: true,
-  },
+  }),
 
   // [puppeteer] https://github.com/puppeteer/puppeteer/issues/11052
   // NOTE: we may not be needing this anymore, as we use '@cloudflare/puppeteer'
