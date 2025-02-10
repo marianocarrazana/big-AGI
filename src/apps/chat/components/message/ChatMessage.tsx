@@ -100,10 +100,14 @@ const fragmentsListSx: SxProps = {
   flexGrow: 1,  // capture all the space, for edit modes
   minWidth: 0,  // VERY important, otherwise very wide messages will overflow the container, causing scroll on the whole page
   my: 'auto',   // v-center content if there's any gap (e.g. single line of text)
+  boxShadow: 'md',
+  backgroundColor: 'background.surface',
+  borderRadius: '.5rem',
 
   // layout
   display: 'flex',
   flexDirection: 'column',
+  p: '1rem',
   gap: 1.5,     // we give a bit more space between the 'classes' of fragments (in-reply-to, images, content, attachments, etc.)
 };
 
@@ -528,13 +532,10 @@ export function ChatMessage(props: {
     backgroundColor: backgroundColor,
     px: { xs: 1, md: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2 },
     py: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2,
+    maxWidth: "960px",
+    width: "100%",
+    m: "1rem auto ",
     // filter: 'url(#agi-futuristic-glow)',
-
-    // style: omit border if set externally
-    ...(!('borderBottom' in (props.sx || {})) && {
-      borderBottom: '1px solid',
-      borderBottomColor: 'divider',
-    }),
 
     // style: when starred
     ...(isUserStarred && {
@@ -602,7 +603,7 @@ export function ChatMessage(props: {
       tabIndex={-1 /* for shortcuts navigation */}
       onMouseUp={(ENABLE_BUBBLE && !fromSystem /*&& !isAssistantError*/) ? handleBlocksMouseUp : undefined}
       sx={listItemSx}
-      // className={messagePendingIncomplete ? 'agi-border-4' /* CSS Effect while in progress */ : undefined}
+    // className={messagePendingIncomplete ? 'agi-border-4' /* CSS Effect while in progress */ : undefined}
     >
 
       {/* (Optional) top decorator */}

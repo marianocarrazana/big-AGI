@@ -9,6 +9,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActiveOutl
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { Icon } from "@iconify/react";
 
 import { SystemPurposeId, SystemPurposes } from '../../data';
 
@@ -82,13 +83,13 @@ const tooltipMetricsGridSx: SxProps = {
 export function messageBackground(messageRole: DMessageRole | string, wasEdited: boolean, isAssistantIssue: boolean): string {
   switch (messageRole) {
     case 'user':
-      return 'primary.plainHoverBg'; // was .background.level1
+      return 'transparent'; // was .background.level1
     case 'assistant':
-      return isAssistantIssue ? 'danger.softBg' : 'background.surface';
+      return isAssistantIssue ? 'danger.softBg' : 'transparent';
     case 'system':
-      return wasEdited ? 'warning.softHoverBg' : 'neutral.softBg';
+      return 'transparent';
     default:
-      return '#ff0000';
+      return 'red';
   }
 }
 
@@ -120,10 +121,10 @@ export function makeMessageAvatarIcon(
 
   switch (messageRole) {
     case 'system':
-      return <SettingsSuggestIcon sx={avatarIconSx} />;  // https://em-content.zobj.net/thumbs/120/apple/325/robot_1f916.png
+      return <a>a</a>;  // https://em-content.zobj.net/thumbs/120/apple/325/robot_1f916.png
 
     case 'user':
-      return <Face6Icon sx={avatarIconSx} />;            // https://www.svgrepo.com/show/306500/openai.svg
+      return <Icon icon="tabler:user-filled" width="36" height="36" />;            // https://www.svgrepo.com/show/306500/openai.svg
 
     case 'assistant':
       const isDownload = messageGeneratorName === 'web';
@@ -268,10 +269,10 @@ function _prettyMetrics(metrics: DMessageGenerator['metrics']): React.ReactNode 
       <b>{formatModelsCost(metrics.$c / 100)}</b>
       {metrics.$cdCache !== undefined && <>
         {' '}<small>(
-        {metrics.$cdCache > 0
-          ? <>cache savings: <b>{formatModelsCost(metrics.$cdCache / 100)}</b></>
-          : <>cache costs: <b>{formatModelsCost(-metrics.$cdCache / 100)}</b></>
-        })</small>
+          {metrics.$cdCache > 0
+            ? <>cache savings: <b>{formatModelsCost(metrics.$cdCache / 100)}</b></>
+            : <>cache costs: <b>{formatModelsCost(-metrics.$cdCache / 100)}</b></>
+          })</small>
       </>}
     </div>}
     {costCode && <div />}

@@ -252,6 +252,8 @@ function ChatDrawerItem(props: {
           color: isActive ? 'text.primary' : 'text.secondary',
           overflowWrap: 'anywhere',
           flex: 1,
+          textTransform: "capitalize",
+          mx: ".25rem"
         }}
       >
         {/*{DEBUG_CONVERSATION_IDS && `${conversationId} - `}*/}
@@ -429,7 +431,7 @@ function ChatDrawerItem(props: {
 
     // Inactive Conversation - click to activate
     <ListItem
-      // sx={{ '--ListItem-minHeight': '2.75rem' }}
+    // sx={{ '--ListItem-minHeight': '2.75rem' }}
     >
 
       <ListItemButton
