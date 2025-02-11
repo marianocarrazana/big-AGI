@@ -48,6 +48,7 @@ jobs:
         env:
           # Update this if you need to configure any environment variables
           NEXT_PUBLIC_BASE_PATH: "/${{ github.event.repository.name }}"
+          BIG_AGI_BUILD: "static"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

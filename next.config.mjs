@@ -15,11 +15,11 @@ buildType && console.log(` 🧠 big-AGI: building for ${buildType}...\n`);
 let nextConfig = {
   reactStrictMode: true,
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  distDir: 'dist',
 
   // [exports] https://nextjs.org/docs/advanced-features/static-html-export
   ...(buildType && {
     output: buildType,
+    distDir: 'dist',
 
     // disable image optimization for exports
     images: { unoptimized: true },
