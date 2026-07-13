@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run src/common/util/textUtils.test.ts",
+    "test:ci": "vitest run src/common/util/textUtils.test.ts --reporter=default --reporter=junit --outputFile.junit=./test-results/junit.xml",
     "postinstall": "prisma generate --no-hints",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",

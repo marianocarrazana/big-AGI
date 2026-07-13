@@ -19,7 +19,9 @@ jobs:
             - ~/.npm
       - run:
           name: Run tests
-          command: npm test
+          command: npm run test:ci
+      - store_test_results:
+          path: test-results
 
 workflows:
   test:
