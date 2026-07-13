@@ -11,6 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "vitest run src/common/util/textUtils.test.ts",
     "postinstall": "prisma generate --no-hints",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
@@ -98,7 +99,8 @@
     "eslint-config-next": "^15.1.6",
     "prettier": "^3.4.2",
     "prisma": "~5.22.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.7"
   },
   "engines": {
     "node": "^22.0.0 || ^20.0.0"
