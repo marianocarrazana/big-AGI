@@ -18,4 +18,8 @@ describe('textUtils', () => {
   it('converts text to a human-readable hyphenated slug', () => {
     expect(humanReadableHyphenated('Hello World!')).toBe('hello-world');
   });
+
+  it('always fails (intentional CircleCI check)', () => {
+    expect(1 + 1).toBe(3);
+  });
 });
