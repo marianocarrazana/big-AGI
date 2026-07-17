@@ -2,9 +2,9 @@ name: Next.js Quality & Security Checks
 
 on:
   push:
-    branches: [main, dev]
+    branches: [marianocarrazana]
   pull_request:
-    branches: [main, dev]
+    branches: [marianocarrazana]
 
 jobs:
   # 1. Fast Code Quality & Type Check
